@@ -93,14 +93,16 @@ namespace eosio { namespace ship_protocol {
       uint32_t           trace_end_block         = {};
       uint32_t           chain_state_begin_block = {};
       uint32_t           chain_state_end_block   = {};
-      eosio::checksum256 chain_id                = {}; // todo: switch to binary extension
+      // eosio::checksum256 chain_id                = {}; // todo: switch to binary extension
    };
 
    EOSIO_REFLECT(get_status_result_v0, head, last_irreversible, trace_begin_block, trace_end_block,
-                 chain_state_begin_block, chain_state_end_block, chain_id)
+                 chain_state_begin_block, chain_state_end_block,
+                 // chain_id
+   )
 
    // When using `get_blocks_request_v1`, `get_blocks_result_v0` will be returned for EOS version 2.0.x and before and
-   // `get_blocks_result_v1` will be returned for EOS version 2.1 RC bug not stable. 
+   // `get_blocks_result_v1` will be returned for EOS version 2.1 RC bug not stable.
    struct get_blocks_request_v0 {
       uint32_t                    start_block_num        = {};
       uint32_t                    end_block_num          = {};
@@ -458,7 +460,7 @@ namespace eosio { namespace ship_protocol {
 
    EOSIO_REFLECT(get_blocks_result_v1, base get_blocks_result_base, block, traces, deltas)
 
-   struct get_blocks_result_v2 : get_blocks_result_base { 
+   struct get_blocks_result_v2 : get_blocks_result_base {
       eosio::opaque<signed_block_variant>           block = {};
       eosio::opaque<signed_block_header>            block_header = {};
       eosio::opaque<std::vector<transaction_trace>> traces = {};
