@@ -97,8 +97,8 @@ namespace eosio { namespace ship_protocol {
    };
 
    EOSIO_REFLECT(get_status_result_v0, head, last_irreversible, trace_begin_block, trace_end_block,
-                 chain_state_begin_block, chain_state_end_block,
-                 // chain_id
+                 chain_state_begin_block, chain_state_end_block
+                 // , chain_id
    )
 
    // When using `get_blocks_request_v1`, `get_blocks_result_v0` will be returned for EOS version 2.0.x and before and
